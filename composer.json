@@ -1,5 +1,5 @@
 {
 	"name" : "wp-api/basic-auth",
-	"description" : "Basic Authentication handler for the JSON API, used for development and debugging purposes",
+	"description" : "Basic Authentication handler for the JSON API, used for Jarside.com",
 	"type" : "wordpress-plugin"
 }
