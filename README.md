@@ -1,4 +1,4 @@
-# Basic Authentication handler
+# Jarside Auth Handler
 This plugin adds Basic Authentication to a WordPress site.
 
 Note that this plugin requires sending your username and password with every
@@ -9,39 +9,6 @@ development and testing. Without SSL we strongly recommend using the
 ## Installing
 1. Download the plugin into your plugins directory
 2. Enable in the WordPress admin
+3. Create a user for Jarside
+4. Use Jarside to generate your articles and publish directly on your site
 
-## Using
-This plugin adds support for Basic Authentication, as specified in [RFC2617][].
-Most HTTP clients will allow you to use this authentication natively. Some
-examples are listed below.
-
-### cURL
-
-```sh
-curl --user admin:password https://example.com/wp-json/
-```
-
-### WP_Http
-
-```php
-$args = array(
-	'headers' => array(
-		'Authorization' => 'Basic ' . base64_encode( $username . ':' . $password ),
-	),
-);
-```
-
-### [node-wpapi][]
-
-```js
-const WPAPI = require('./wpapi')
-const wp = new WPAPI({
-    endpoint: 'https://example.com/wp-json',
-    username: 'editor',
-    password: 'password'
-});
-```
-
-[oauth]: https://github.com/WP-API/OAuth1
-[RFC2617]: https://tools.ietf.org/html/rfc2617
-[node-wpapi]: http://wp-api.org/node-wpapi/
