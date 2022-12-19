@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: JSON Basic Authentication
- * Description: Basic Authentication handler for the JSON API, used for development and debugging purposes
- * Author: WordPress API Team
- * Author URI: https://github.com/WP-API
+ * Plugin Name: Jarside Auth
+ * Description: Basic Authentication handler for the WORDPRESS JSON API used for Jarside.com
+ * Author: Jarside
+ * Author URI: https://jarside.com
  * Version: 0.1
- * Plugin URI: https://github.com/WP-API/Basic-Auth
+ * Plugin URI: https://github.com/Guillaume-Souillard/Jarside-Auth
  */
 
 function json_basic_auth_handler( $user ) {
