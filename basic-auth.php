@@ -60,3 +60,31 @@ function json_basic_auth_error( $error ) {
 	return $wp_json_basic_auth_error;
 }
 add_filter( 'rest_authentication_errors', 'json_basic_auth_error' );
+
+// Create the Jarside role
+add_role(
+    'jarside_editor',
+    __( 'Jarside Editor' ),
+    array(
+        'read' => true,
+        'edit_posts' => true,
+        'edit_published_posts' => true,
+        'edit_others_posts' => true,
+        'publish_posts' => true,
+        'delete_posts' => true,
+        'delete_published_posts' => true,
+        'delete_others_posts' => true,
+        'manage_categories' => true,
+        'create_posts' => true,
+        'create_categories' => true,
+        'delete_categories' => true
+    )
+);
+
+// Add the capability to create posts and categories to the Jarside role
+function add_cap_to_jarside() {
+    $role = get_role( 'jarside' );
+    $role->add_cap( 'create_posts' );
+    $role->add_cap( 'create_categories' );
+}
+add_action( 'admin_init', 'add_cap_to_jarside' );
