@@ -4,7 +4,7 @@
  * Description: Basic Authentication handler for the WORDPRESS JSON API used for Jarside.com
  * Author: Jarside
  * Author URI: https://jarside.com
- * Version: 0.1
+ * Version: 0.2
  * Plugin URI: https://github.com/Guillaume-Souillard/Jarside-Auth
  */
 
