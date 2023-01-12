@@ -8,7 +8,7 @@
  * Plugin URI: https://github.com/Guillaume-Souillard/Jarside-Auth
  */
 
-function json_basic_auth_handler( $user ) {
+function jarside_json_basic_auth_handler( $user ) {
 	global $wp_json_basic_auth_error;
 
 	$wp_json_basic_auth_error = null;
@@ -32,11 +32,11 @@ function json_basic_auth_handler( $user ) {
 	 * recursion and a stack overflow unless the current function is removed from the determine_current_user
 	 * filter during authentication.
 	 */
-	remove_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );
+	remove_filter( 'determine_current_user', 'jarside_json_basic_auth_handler', 20 );
 
 	$user = wp_authenticate( $username, $password );
 
-	add_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );
+	add_filter( 'determine_current_user', 'jarside_json_basic_auth_handler', 20 );
 
 	if ( is_wp_error( $user ) ) {
 		$wp_json_basic_auth_error = $user;
@@ -47,9 +47,9 @@ function json_basic_auth_handler( $user ) {
 
 	return $user->ID;
 }
-add_filter( 'determine_current_user', 'json_basic_auth_handler', 20 );
+add_filter( 'determine_current_user', 'jarside_json_basic_auth_handler', 20 );
 
-function json_basic_auth_error( $error ) {
+function jarside_json_basic_auth_error( $error ) {
 	// Passthrough other errors
 	if ( ! empty( $error ) ) {
 		return $error;
@@ -59,7 +59,7 @@ function json_basic_auth_error( $error ) {
 
 	return $wp_json_basic_auth_error;
 }
-add_filter( 'rest_authentication_errors', 'json_basic_auth_error' );
+add_filter( 'rest_authentication_errors', 'jarside_json_basic_auth_error' );
 
 // Create the Jarside role
 add_role(
@@ -80,11 +80,3 @@ add_role(
         'delete_categories' => true
     )
 );
-
-// Add the capability to create posts and categories to the Jarside role
-function add_cap_to_jarside() {
-    $role = get_role( 'jarside' );
-    $role->add_cap( 'create_posts' );
-    $role->add_cap( 'create_categories' );
-}
-add_action( 'admin_init', 'add_cap_to_jarside' );
